@@ -35,7 +35,8 @@ Phase 3:
 
 - Added some boilerplate for Machine, Reel, ReelView and RSS.
 Next: 
-* do some glue up, achieve a rendered machine in game.
+* do some glue up, achieve a rendered machine in game. - DONE. Need to fix mask because last reel is half cut. UI is also half cut. In general check positioning stuff.
+- Next up: position symbols on reels properly.
 * start spinning logic - seems like phase 4 will be blended here a bit.
 * test how it all plays along
 
