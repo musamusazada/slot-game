@@ -4,6 +4,7 @@ import { IGameState, TGameStateData } from "./IGameState";
 
 export class GameState implements IGameState {
     private _isSpinning: boolean = false;
+    private _isWin: boolean = false;
 
     public constructor(private eventBus: EventBus) {}
 
@@ -11,9 +12,18 @@ export class GameState implements IGameState {
         return this._isSpinning;
     }
 
+    public get isWin(): boolean {
+        return this._isWin;
+    }
+
     public setSpinning(value: boolean): void {
         if (this._isSpinning === value) return;
         this._isSpinning = value;
+        this.emitStateChange();
+    }
+
+    public setIsWin(value: boolean): void {
+        this._isWin = value;
         this.emitStateChange();
     }
 
