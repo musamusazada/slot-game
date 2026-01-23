@@ -9,7 +9,7 @@ Phase 1:
 - Move constants, hard-coded stuff to configs - Setup done, need to come back now and then to adjust
 - Prepare state: nothing fance, single object state approach - Done
 - Prepare eventBus: need this to break free from coupled code -> should allow me to easily get the UI to ok state - EventBus is done. UI is connected to eventBus. 
-- update AssetLoader, Add AudioService, SymbolService 
+- update AssetLoader, Add AudioService, SymbolService - SS is done, prio AudioService, delay for now touching the AssetLoader.
 
 Phase 2:
 -- Stage based game ? I think it is easiest to go with for now.
