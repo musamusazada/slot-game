@@ -1,7 +1,9 @@
-import { IAudioConfig } from "./IAudioConfig";
+import { IAudioConfig, SOUND_NAMES } from "./IAudioConfig";
+
+
 
 export const AudioConfig: IAudioConfig = {
-    REEL_SPIN: 'assets/sounds/reelSpin.webm',
-    WIN: 'assets/sounds/win.webm',
-    SPIN_BUTTON: 'assets/sounds/spinButton.webm',
+    [SOUND_NAMES.REEL_SPIN]: 'assets/sounds/reelSpin.webm',
+    [SOUND_NAMES.WIN]: 'assets/sounds/win.webm',
+    [SOUND_NAMES.SPIN_BUTTON]: 'assets/sounds/spinButton.webm',
 }
