@@ -4,7 +4,7 @@ import { AssetLoader } from '../utils/AssetLoader';
 import { sound } from '../utils/sound';
 import { GameState } from '../state/GameState';
 import { EventBus } from '../utils/EventBus';
-import { GameConfig } from '../config/GameConfig';
+import { GameConfig } from '../config/gameConfig/GameConfig';
 import { GameEvents } from '../types/GameEvents';
 import { TGameStateData } from '../state/IGameState';
 

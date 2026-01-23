@@ -1,4 +1,4 @@
-import { IGameConfig } from './GameConfigTypes';
+import { IGameConfig } from '../GameConfigTypes';
 
 export const GameConfig: IGameConfig = {
     SCREEN: {
