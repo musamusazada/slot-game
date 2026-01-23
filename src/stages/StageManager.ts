@@ -5,8 +5,9 @@ import { GameState } from "../state/GameState";
 import { EventBus } from "../utils/EventBus";
 import { IGameStage } from "../types/IGameStage";
 import { GameEvents } from "../types/GameEvents";
+import { IStageManager } from "./IStageManager";
 
-export class StageManager {
+export class StageManager implements IStageManager {
     public container: Container;
 
     private _currStage: IGameStage | null = null;
@@ -25,6 +26,10 @@ export class StageManager {
         // TODO: load stage ? 
     }
 
+    public loadStage(stage: IGameStage): void {
+        // TODO: impl later when i have sample base game stage
+    }
+
     private onSpinRequest(): void {
         if (this._gameState.isSpinning) return;
 
@@ -34,5 +39,9 @@ export class StageManager {
 
     private onReelsStopped(): void {
         // TODO: win system ?
+    }
+
+    public getCurrentStage(): IGameStage | null {
+        return this._currStage;
     }
 }
