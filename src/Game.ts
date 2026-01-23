@@ -2,15 +2,19 @@ import * as PIXI from 'pixi.js';
 import { SlotMachine } from './slots/SlotMachine';
 import { AssetLoader } from './utils/AssetLoader';
 import { UI } from './ui/UI';
+import { GameState } from './state/GameState';
+import { EventBus } from './utils/EventBus';
 
 export class Game {
-    private app: PIXI.Application;
-    private slotMachine!: SlotMachine;
-    private ui!: UI;
-    private assetLoader: AssetLoader;
-
+    private _app: PIXI.Application;
+    private _slotMachine!: SlotMachine;
+    private _ui!: UI;
+    private _assetLoader: AssetLoader;
+    private _eventBus: EventBus;
+    private _gameState: GameState;
+    
     constructor() {
-        this.app = new PIXI.Application({
+        this._app = new PIXI.Application({
             width: 1280,
             height: 800,
             backgroundColor: 0x1099bb,
@@ -20,10 +24,13 @@ export class Game {
 
         const gameContainer = document.getElementById('game-container');
         if (gameContainer) {
-            gameContainer.appendChild(this.app.view as HTMLCanvasElement);
+            gameContainer.appendChild(this._app.view as HTMLCanvasElement);
         }
 
-        this.assetLoader = new AssetLoader();
+        this._assetLoader = new AssetLoader();
+
+        this._eventBus = new EventBus();
+        this._gameState = new GameState(this._eventBus);
 
         this.init = this.init.bind(this);
         this.resize = this.resize.bind(this);
@@ -35,15 +42,15 @@ export class Game {
 
     public async init(): Promise<void> {
         try {
-            await this.assetLoader.loadAssets();
+            await this._assetLoader.loadAssets();
 
-            this.slotMachine = new SlotMachine(this.app);
-            this.app.stage.addChild(this.slotMachine.container);
+            this._slotMachine = new SlotMachine(this._app);
+            this._app.stage.addChild(this._slotMachine.container);
 
-            this.ui = new UI(this.app, this.slotMachine);
-            this.app.stage.addChild(this.ui.container);
+            this._ui = new UI(this._app, this._eventBus, this._gameState, this._slotMachine);
+            this._app.stage.addChild(this._ui.container);
 
-            this.app.ticker.add(this.update.bind(this));
+            this._app.ticker.add(this.update.bind(this));
 
             console.log('Game initialized successfully');
         } catch (error) {
@@ -52,13 +59,13 @@ export class Game {
     }
 
     private update(delta: number): void {
-        if (this.slotMachine) {
-            this.slotMachine.update(delta);
+        if (this._slotMachine) {
+            this._slotMachine.update(delta);
         }
     }
 
     private resize(): void {
-        if (!this.app || !this.app.renderer) return;
+        if (!this._app || !this._app.renderer) return;
 
         const gameContainer = document.getElementById('game-container');
         if (!gameContainer) return;
@@ -69,11 +76,11 @@ export class Game {
         // Calculate scale to fit the container while maintaining aspect ratio
         const scale = Math.min(w / 1280, h / 800);
 
-        this.app.stage.scale.set(scale);
+        this._app.stage.scale.set(scale);
 
         // Center the stage
-        this.app.renderer.resize(w, h);
-        this.app.stage.position.set(w / 2, h / 2);
-        this.app.stage.pivot.set(1280 / 2, 800 / 2);
+        this._app.renderer.resize(w, h);
+        this._app.stage.position.set(w / 2, h / 2);
+        this._app.stage.pivot.set(1280 / 2, 800 / 2);
     }
 }
