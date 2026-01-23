@@ -33,6 +33,11 @@ Phase 3:
 - Refactor Reel: Reel, ReelView, ReelSpinSystem ??
 - Remove references of slotMachine from UI.ts
 
+- Added some boilerplate for Machine, Reel, ReelView and RSS.
+Next: 
+* do some glue up, achieve a rendered machine in game.
+* start spinning logic - seems like phase 4 will be blended here a bit.
+* test how it all plays along
 
 Phase 4:
 - move away from PIXI.ticker based spinning, use gsap/anime.js
