@@ -7,6 +7,7 @@ import { GameEvents } from "../../types/GameEvents";
 import { GameConfig } from "../../config/gameConfig/GameConfig";
 import { AssetLoader } from "../../utils/AssetLoader";
 import { Spine } from "pixi-spine";
+import { SOUND_NAMES } from "../../config/audioConfig/IAudioConfig";
 
 
 export class BaseGameStage implements IGameStage {
@@ -72,12 +73,10 @@ export class BaseGameStage implements IGameStage {
     }
 
     private onSpinStart(): void {
-        // TODO: update audio config to support below
-        // this._audioService.play(SOUND_NAMES.REEL_SPIN)
+        this._audioService.play(SOUND_NAMES.REEL_SPIN)
     }
 
     private onAllReelsStopped(): void {
-        // TODO: same as above
-        // this._audioService.play(SOUND_NAMES.REEL_SPIN)
+        this._audioService.play(SOUND_NAMES.REEL_SPIN)
     }
 }
