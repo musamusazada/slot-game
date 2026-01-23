@@ -7,8 +7,8 @@ SELF REMINDER THROUGHOUT PROCESS:
 Phase 1:
 -- Dont waste time trying to pluggin in new stuff, they will be refactored **
 - Move constants, hard-coded stuff to configs - Setup done, need to come back now and then to adjust
-- Prepare state: nothing fance, single object state approach - Setup done, need to add emitter
-- Prepare eventBus: need this to break free from coupled code -> should allow me to easily get the UI to ok state
+- Prepare state: nothing fance, single object state approach - Done
+- Prepare eventBus: need this to break free from coupled code -> should allow me to easily get the UI to ok state - EventBus is done, might need to extend events in future. Can move to UI next.
 - update AssetLoader, Add AudioService, SymbolService 
 
 Phase 2:
