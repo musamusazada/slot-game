@@ -1,5 +1,5 @@
 import { Container } from "pixi.js";
-import { IGameStage } from "../types/IGameStage";
+import { IGameStage } from "../../types/IGameStage";
 
 /**
  * Definition of simple stage manager 

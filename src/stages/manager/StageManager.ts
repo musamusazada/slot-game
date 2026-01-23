@@ -5,7 +5,7 @@ import { GameState } from "../state/GameState";
 import { EventBus } from "../utils/EventBus";
 import { IGameStage } from "../types/IGameStage";
 import { GameEvents } from "../types/GameEvents";
-import { IStageManager } from "./IStageManager";
+import { IStageManager } from "./manager/IStageManager";
 
 export class StageManager implements IStageManager {
     public container: Container;
