@@ -7,7 +7,7 @@ import { Texture } from "@pixi/core";
 export class SymbolService implements ISymbolService {
     private _symbolsMap: Map<number, ISymbolConfig> = new Map();
 
-    private constructor() {
+    public constructor() {
         this.loadSymbolDefs(SymbolConfig)
     }
 

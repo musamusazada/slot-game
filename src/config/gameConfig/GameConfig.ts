@@ -15,7 +15,7 @@ export const GameConfig: IGameConfig = {
         width: 150 * 6, // 900, for 6 column setup
     },
     SYMBOLS: {
-        size: 100,
+        size: 150,
     },
     // TODO: add descriptive comments when implementing spinning
     SPIN: {

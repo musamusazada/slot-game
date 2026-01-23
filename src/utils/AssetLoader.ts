@@ -11,7 +11,6 @@ const SOUNDS_PATH = 'assets/sounds/';
 const UI_IMAGES = [
     'button_spin.png',
     'button_spin_disabled.png',
-    'button_spinning.png',
 ];
 
 const IMAGES = [

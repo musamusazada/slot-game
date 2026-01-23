@@ -9,6 +9,5 @@ type TMappedSoundNames = {
     [key in SOUND_NAMES]: string;
 }
 
-// Config interface to be type safe with SOUND_NAMES
-export interface IAudioConfig extends TMappedSoundNames {
-}
+// Config type to be type safe with SOUND_NAMES
+export type IAudioConfig = TMappedSoundNames;

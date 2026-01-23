@@ -13,15 +13,12 @@ export class UI {
     private _app: PIXI.Application;
     private _eventBus: EventBus;
     private _gameState: GameState;
-    // TODO: remove slotMachine ref
-    private slotMachine: SlotMachine;
     private _spinButton!: PIXI.Sprite;
 
-    constructor(app: PIXI.Application, eventBus: EventBus, gameState: GameState ,slotMachine: SlotMachine) {
+    constructor(app: PIXI.Application, eventBus: EventBus, gameState: GameState) {
         this._app = app;
         this._eventBus = eventBus;
         this._gameState = gameState;
-        this.slotMachine = slotMachine;
         this.container = new PIXI.Container();
 
         this.createSpinButton();
@@ -46,8 +43,6 @@ export class UI {
             this._spinButton.on('pointerout', this.onButtonOut.bind(this));
 
             this.container.addChild(this._spinButton);
-
-            this.slotMachine.setSpinButton(this._spinButton);
         } catch (error) {
             console.error('Error creating spin button:', error);
         }
@@ -58,11 +53,7 @@ export class UI {
 
         sound.play('Spin button');
 
-        // TODO: remove second arg after eventBus refactor.
         this._eventBus.emit(GameEvents.SPIN_REQUEST);
-
-        // TODO: remove after machine refactor.
-        this.slotMachine.spin();
     }
 
     // Game events

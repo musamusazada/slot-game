@@ -1,11 +1,12 @@
 import { Container } from "pixi.js";
-import { SymbolService } from "../services/symbolService/SymbolService";
-import { AudioService } from "../services/audioService/AudioService";
-import { GameState } from "../state/GameState";
-import { EventBus } from "../utils/EventBus";
-import { IGameStage } from "../types/IGameStage";
-import { GameEvents } from "../types/GameEvents";
-import { IStageManager } from "./manager/IStageManager";
+import { SymbolService } from "../../services/symbolService/SymbolService";
+import { AudioService } from "../../services/audioService/AudioService";
+import { GameState } from "../../state/GameState";
+import { EventBus } from "../../utils/EventBus";
+import { IGameStage } from "../../types/IGameStage";
+import { GameEvents } from "../../types/GameEvents";
+import { IStageManager } from "./IStageManager";
+import { BaseGameStage } from "../gameStages/BaseGameStage";
 
 export class StageManager implements IStageManager {
     public container: Container;
@@ -24,10 +25,18 @@ export class StageManager implements IStageManager {
         this._eventBus.on(GameEvents.ALL_REELS_STOPPED, this.onReelsStopped.bind(this));
 
         // TODO: load stage ? 
+        this.loadStage(new BaseGameStage(this._eventBus, this._audioService, this._symbolService));
     }
 
     public loadStage(stage: IGameStage): void {
-        // TODO: impl later when i have sample base game stage
+        if (this._currStage) {
+            this._currStage.onExit();
+            this.container.removeChild(this._currStage.getView());
+        }
+
+        this._currStage = stage;
+        this.container.addChild(this._currStage.getView());
+        this._currStage.onEnter(); 
     }
 
     private onSpinRequest(): void {
