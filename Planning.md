@@ -9,8 +9,16 @@ Phase 1:
 - Move constants, hard-coded stuff to configs - Setup done, need to come back now and then to adjust
 - Prepare state: nothing fance, single object state approach - Done
 - Prepare eventBus: need this to break free from coupled code -> should allow me to easily get the UI to ok state - EventBus is done. UI is connected to eventBus. 
-- update AssetLoader, Add AudioService, SymbolService - SS is done, prio AudioService, delay for now touching the AssetLoader.
+- update AssetLoader, Add AudioService, SymbolService - SS is done, AudioService is done, delay for now touching the AssetLoader.
 
+Notes: 
+-- somewhat in enough state to move forward to Phase 2
+
+
+Pre Phase 2:
+- simple stage manager
+- simple BaseGameStage - focus on removal of layout stuff from SlotMachine and stage based spin , win handling ?
+- win system, just a dumb random win check
 Phase 2:
 -- Stage based game ? I think it is easiest to go with for now.
 - Create StageManager
