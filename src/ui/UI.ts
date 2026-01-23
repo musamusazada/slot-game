@@ -59,7 +59,7 @@ export class UI {
         sound.play('Spin button');
 
         // TODO: remove second arg after eventBus refactor.
-        this._eventBus.emit(GameEvents.SPIN_REQUEST, undefined);
+        this._eventBus.emit(GameEvents.SPIN_REQUEST);
 
         // TODO: remove after machine refactor.
         this.slotMachine.spin();

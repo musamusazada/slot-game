@@ -13,8 +13,8 @@ export class EventBus {
         this._emitter = new utils.EventEmitter();
     }
 
-    public emit<K extends keyof GameEventMap>(event: K, payload: GameEventMap[K]): boolean {
-        return this._emitter.emit(event, payload);
+    public emit<K extends keyof GameEventMap>(event: K, ...args: GameEventMap[K] extends void ? [] : [GameEventMap[K]]): boolean {
+        return this._emitter.emit(event, ...args);
     }
 
     public on<K extends keyof GameEventMap>(event: K, fn: (payload: GameEventMap[K]) => void): void {
