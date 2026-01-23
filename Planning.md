@@ -21,8 +21,8 @@ Pre Phase 2:
 - win system, just a dumb random win check
 Phase 2:
 -- Stage based game ? I think it is easiest to go with for now.
-- Create StageManager
-- Simple BaseGameStage
+- Create StageManager - done
+- Simple BaseGameStage - done, needs machine stuff 
 - Simple WinSystem
 
 This should allow me to prepare stage related stuff and remove them from SlotMachine.
