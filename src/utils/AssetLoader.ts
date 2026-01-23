@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { sound } from './sound';
+import { SymbolConfig } from '../config/symbols/SymbolsConfig';
 
 // Asset paths
 const IMAGES_PATH = 'assets/images/';
@@ -7,15 +8,15 @@ const SPINES_PATH = 'assets/spines/';
 const SOUNDS_PATH = 'assets/sounds/';
 
 // Asset lists
-const IMAGES = [
-    'symbol1.png',
-    'symbol2.png',
-    'symbol3.png',
-    'symbol4.png',
-    'symbol5.png',
-    'background.png',
+const UI_IMAGES = [
     'button_spin.png',
     'button_spin_disabled.png',
+    'button_spinning.png',
+];
+
+const IMAGES = [
+    ...SymbolConfig.map(symbol => symbol.texture),
+    ...UI_IMAGES
 ];
 
 const SPINES = [
