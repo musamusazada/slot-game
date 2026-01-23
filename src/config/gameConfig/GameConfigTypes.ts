@@ -15,6 +15,9 @@ export interface IGameConfig {
             height: number
         }
     }
+    SOUND: {
+        DEFAULT_VOLUME: number;
+    }
 }
 
 // TODO: Come back later during spinning implementation

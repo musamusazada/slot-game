@@ -1,4 +1,4 @@
-import { IGameConfig } from '../GameConfigTypes';
+import { IGameConfig } from './GameConfigTypes';
 
 export const GameConfig: IGameConfig = {
     SCREEN: {
@@ -33,5 +33,8 @@ export const GameConfig: IGameConfig = {
             width: 150,
             height: 80,
         }
+    },
+    SOUND: {
+        DEFAULT_VOLUME: 0.5
     }
 };

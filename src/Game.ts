@@ -4,6 +4,8 @@ import { AssetLoader } from './utils/AssetLoader';
 import { UI } from './ui/UI';
 import { GameState } from './state/GameState';
 import { EventBus } from './utils/EventBus';
+import { AudioService } from './services/audioService/AudioService';
+import { AudioConfig } from './config/audioConfig/AudioConfig';
 
 export class Game {
     private _app: PIXI.Application;
@@ -12,6 +14,7 @@ export class Game {
     private _assetLoader: AssetLoader;
     private _eventBus: EventBus;
     private _gameState: GameState;
+    private _audioService: AudioService; 
     
     constructor() {
         this._app = new PIXI.Application({
@@ -31,6 +34,7 @@ export class Game {
 
         this._eventBus = new EventBus();
         this._gameState = new GameState(this._eventBus);
+        this._audioService = new AudioService(AudioConfig);
 
         this.init = this.init.bind(this);
         this.resize = this.resize.bind(this);
@@ -43,6 +47,8 @@ export class Game {
     public async init(): Promise<void> {
         try {
             await this._assetLoader.loadAssets();
+
+            await this._audioService.loadSounds();
 
             this._slotMachine = new SlotMachine(this._app);
             this._app.stage.addChild(this._slotMachine.container);
