@@ -34,7 +34,13 @@ export type TSpinConfig = {
 export type TReelsConfig = {
     count: number;
     symbolsPerReel: number;
+    symbolsPerSecond: number;
     spacing: number; 
     width: number;
     height: number;
+}
+
+export type TSpinProperties = {
+    distance: number,
+    duration: number
 }

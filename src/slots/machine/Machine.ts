@@ -5,6 +5,7 @@ import { SymbolService } from "../../services/symbolService/SymbolService";
 import { EventBus } from "../../utils/EventBus";
 import { GameConfig } from "../../config/gameConfig/GameConfig";
 import { Reel } from "../reel/Reel";
+import { GameEvents } from "../../types/GameEvents";
 
 export class Machine implements IMachine {
     public readonly container: Container;
@@ -28,6 +29,9 @@ export class Machine implements IMachine {
         this.createMask();
 
         // TODO: init spin system
+        this._reelSpinSystem.init(this._reels);
+
+        eventBus.on(GameEvents.SPIN_START, this.spin.bind(this));
     }
 
     private createReels(): void {
@@ -43,13 +47,15 @@ export class Machine implements IMachine {
     private createMask(): void {
         const mask = new Graphics();
         mask.beginFill(0xFFFFFF);
-        mask.drawRect(this.container.position.x, this.container.position.y, this.width, (this.height));
+        mask.drawRect(0, 0, this.width, this.height);
         mask.endFill();
+        this.container.addChild(mask);
         this.container.mask = mask;
     }
 
     public spin(): void {
         // TODO: impl later
+        this._reelSpinSystem.startSpin();
     }
 
     public stop(): Promise<void> {

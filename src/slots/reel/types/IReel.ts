@@ -1,7 +1,9 @@
 import { Container } from "pixi.js";
 
 export interface IReel {
-    readonly symbolsCount: number;
-
+    // Virtual reel position.
+    position: number;
+    sizeOfSymbol: number;
+    symbolsCount: number;
     getView(): Container;
 }

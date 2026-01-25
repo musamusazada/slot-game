@@ -63,6 +63,10 @@ export class Reel {
 
     }
 
+    public get sizeOfSymbol(): number {
+        return this.symbolSize;
+    }
+
     public startSpin(): void {
         this.isSpinning = true;
         this.speed = SPIN_SPEED;

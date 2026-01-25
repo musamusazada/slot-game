@@ -47,6 +47,10 @@ export class Reel implements IReel {
         return this._symbolsCount;
     }
 
+    public get sizeOfSymbol(): number {
+        return this._symbolSize;
+    }
+    
     public getView(): Container {
         return this._container;
     }
