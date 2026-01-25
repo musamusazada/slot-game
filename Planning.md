@@ -42,7 +42,7 @@ Next:
        initial road: track position of reel, and expose it
        -- ReelView: expose a method to work on top of this position ? and align symbols 
        -- RSS: for anim, target the position in Reel so it can pass it to ReelView to update ?
-       For starterts , simple symbol positioning just with offset, do spinning related movement of symbol from left to right later not now.
+       Have some spinning going on, need to add symbol pos rearranging during spin. Once spinning is ok can move to stop
        - Simple positioning in place. Tested also changing reel symbols count , maybe later add possibility of centering symbols ? So machine looks nice if I change config ?
 * start spinning logic - seems like phase 4 will be blended here a bit.
 * test how it all plays along
