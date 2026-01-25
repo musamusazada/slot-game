@@ -23,7 +23,7 @@ export interface IGameConfig {
 // TODO: Come back later during spinning implementation
 export type TSpinConfig = {
     minimumSpinTime: number;
-    accelerationDuration: number;
+    spinningSpeed: number;
     stopDuration: number;
     staggerStartDelay: number;
     staggerStopDelay: number;

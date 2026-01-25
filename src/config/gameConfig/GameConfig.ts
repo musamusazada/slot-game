@@ -11,7 +11,7 @@ export const GameConfig: IGameConfig = {
         symbolsPerReel: 6,
         spacing: 10,
         height: 150,
-        symbolsPerSecond: 30,
+        symbolsPerSecond: 20,
         // TODO: adjust maybe so it includes the any spacing ?
         width: 150 * 6, // 900, for 6 column setup
     },
@@ -21,10 +21,10 @@ export const GameConfig: IGameConfig = {
     // TODO: add descriptive comments when implementing spinning
     SPIN: {
         minimumSpinTime: 2,
-        accelerationDuration: 0.5,
+        spinningSpeed: 1,
         stopDuration: 2,
         staggerStartDelay: 0.2,
-        staggerStopDelay: 500,
+        staggerStopDelay: 0.2,
         //TODO: adjust the values when implementing spinning
         spinEase: 'none',
         stopEase: 'none',

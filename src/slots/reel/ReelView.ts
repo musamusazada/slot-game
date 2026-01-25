@@ -6,11 +6,16 @@ export class ReelView implements IReelView {
     private readonly _container: Container;
     private _symbolSprites: Sprite[] = [];
     private _symbolIds: number[] = [];
+    private _totalWidth: number;
+    private _visibleWidth: number;
 
     public constructor(private symbolCount: number, private symbolSize:number, private _symbolService: SymbolService, symbolIds: number[]) {
         this._container = new Container(); 
-        // store copy of the original
+        // copy the original symbols
         this._symbolIds = [...symbolIds];
+
+        this._totalWidth = (this.symbolCount + 1 ) * this.symbolSize;
+        this._visibleWidth = (this.symbolCount) * this.symbolSize;
 
         this.initSymbols();
     }   
@@ -18,7 +23,6 @@ export class ReelView implements IReelView {
     private initSymbols(): void {
         for (let i = 0; i < this.symbolCount; i++) {
             const id = this._symbolIds[i];
-            // Use pooled sprite from SymbolService
             const texture = this._symbolService.getSymbolTextureById(id);
             const sprite = new Sprite(texture);
 
@@ -34,7 +38,14 @@ export class ReelView implements IReelView {
         for (let i = 0; i < this._symbolSprites.length; i++){
             const sprite = this._symbolSprites[i];
             const offset = i * this.symbolSize;
-            const calculatedPositionX = position + offset;
+             // Makes sure that the position doesn't exceed the totalWidth
+            let calculatedPositionX = ((position + offset) % this._totalWidth + this._totalWidth) % this._totalWidth;
+            
+            // Left to right transition handling
+            if (calculatedPositionX > this._visibleWidth) {
+                calculatedPositionX -= this._totalWidth;
+            }
+            
             sprite.x = calculatedPositionX;
         }
     }
