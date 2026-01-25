@@ -35,8 +35,14 @@ Phase 3:
 
 - Added some boilerplate for Machine, Reel, ReelView and RSS.
 Next: 
-* do some glue up, achieve a rendered machine in game. - DONE. Need to fix mask because last reel is half cut. UI is also half cut. In general check positioning stuff.
+* do some glue up, achieve a rendered machine in game. - DONE. In general check positioning stuff.
+- Mask and UI visual issue is fixed: Positioned mask (x,y) same as machine container (x,y).
 - Next up: position symbols on reels properly.
+    -- RSS, Reel, ReelView responsibility distributions:
+       initial road: track position of reel, and expose it
+       -- ReelView: expose a method to work on top of this position ? and align symbols 
+       -- RSS: for anim, target the position in Reel so it can pass it to ReelView to update ?
+       For starterts , simple symbol positioning just with offset, do spinning related movement of symbol from left to right later not now.
 * start spinning logic - seems like phase 4 will be blended here a bit.
 * test how it all plays along
 
