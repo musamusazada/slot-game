@@ -43,7 +43,7 @@ export class Machine implements IMachine {
     private createMask(): void {
         const mask = new Graphics();
         mask.beginFill(0xFFFFFF);
-        mask.drawRect(0, 0, this.width, (this.height));
+        mask.drawRect(this.container.position.x, this.container.position.y, this.width, (this.height));
         mask.endFill();
         this.container.mask = mask;
     }
