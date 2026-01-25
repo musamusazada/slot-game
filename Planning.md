@@ -51,6 +51,10 @@ Phase 4:
 - move away from PIXI.ticker based spinning, use gsap/anime.js
 - add minimum spinning time and config based spinning stuff
 
+-- Somewhat ok , add Win presentation next.
+-- Fix todos and add comments, clean up code.
+-- Prepare Handover.md
+
 Phase 5:
 - add tests
 - dunno, use maybe vitests ?
