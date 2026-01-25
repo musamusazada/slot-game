@@ -28,10 +28,15 @@ export class Reel implements IReel {
     }
 
     private initData(): void {
-        for (let i = 0; i < this._symbolsCount; i++) {
+        // TODO: clean up for + 1
+        for (let i = 0; i < this._symbolsCount + 1; i++) {
             const symbol = this._symbolService.getRandomSymbolId();
             this._symbolIds.push(symbol);
         }
+    }
+
+    public getVisibleSymbols(): number[] {
+        return this._symbolIds; 
     }
 
     public get position(): number {
@@ -50,7 +55,7 @@ export class Reel implements IReel {
     public get sizeOfSymbol(): number {
         return this._symbolSize;
     }
-    
+
     public getView(): Container {
         return this._container;
     }

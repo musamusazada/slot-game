@@ -6,7 +6,7 @@ export interface IMachine {
     spin(): void;
 
     // stop spinning all reels
-    stop(): Promise<void>;
+    stop(): Promise<number[]>;
 
     // get machine view container
     getView(): Container;

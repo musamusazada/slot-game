@@ -5,5 +5,6 @@ export interface IReel {
     position: number;
     sizeOfSymbol: number;
     symbolsCount: number;
+    getVisibleSymbols(): number[];
     getView(): Container;
 }

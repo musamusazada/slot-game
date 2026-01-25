@@ -44,13 +44,29 @@ export class StageManager implements IStageManager {
 
         this._gameState.setSpinning(true);
         this._eventBus.emit(GameEvents.SPIN_START);
+
+        this.mockServerResponse();
     }
 
     private onReelsStopped(): void {
+        this._gameState.setSpinning(false);
         // TODO: win system ?
     }
 
     public getCurrentStage(): IGameStage | null {
         return this._currStage;
+    }
+
+    // TODO: move out from here
+    private mockServerResponse(): void {
+        setTimeout(() => {
+            
+            if (this._currStage) {
+                const machine = this._currStage.getMachine();
+                if (machine) {
+                    machine.stop();
+                }
+            }
+        }, 2000);
     }
 }

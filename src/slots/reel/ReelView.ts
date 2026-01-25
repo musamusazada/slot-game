@@ -21,7 +21,8 @@ export class ReelView implements IReelView {
     }   
 
     private initSymbols(): void {
-        for (let i = 0; i < this.symbolCount; i++) {
+        // TODO: clean up for + 1
+        for (let i = 0; i < this.symbolCount + 1; i++) {
             const id = this._symbolIds[i];
             const texture = this._symbolService.getSymbolTextureById(id);
             const sprite = new Sprite(texture);

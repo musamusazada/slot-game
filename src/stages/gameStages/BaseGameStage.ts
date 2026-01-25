@@ -10,6 +10,7 @@ import { Spine } from "pixi-spine";
 import { SOUND_NAMES } from "../../config/audioConfig/IAudioConfig";
 import { ReelSpinSystem } from "../../systems/reelSpinSystem/ReelSpinSystem";
 import { Machine } from "../../slots/machine/Machine";
+import { IMachine } from "../../slots/machine/IMachine";
 
 
 export class BaseGameStage implements IGameStage {
@@ -26,7 +27,7 @@ export class BaseGameStage implements IGameStage {
         this.container = new Container();
 
         // TODO: machine setup stuff
-        const reelSpinSystem = new ReelSpinSystem();
+        const reelSpinSystem = new ReelSpinSystem(this._eventBus);
         this._machine = new Machine(this._eventBus, reelSpinSystem, this._symbolService);
 
         this.createBackground();
@@ -90,6 +91,10 @@ export class BaseGameStage implements IGameStage {
     }
 
     private onAllReelsStopped(): void {
-        this._audioService.play(SOUND_NAMES.REEL_SPIN)
+        this._audioService.stop(SOUND_NAMES.REEL_SPIN)
+    }
+
+    public getMachine(): IMachine | null {
+        return this._machine;
     }
 }

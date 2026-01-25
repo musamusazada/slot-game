@@ -27,7 +27,7 @@ export const GameConfig: IGameConfig = {
         staggerStopDelay: 0.2,
         //TODO: adjust the values when implementing spinning
         spinEase: 'none',
-        stopEase: 'none',
+        stopEase: 'back.out(1)',
     },
     UI: {
         SPIN_BUTTON: {

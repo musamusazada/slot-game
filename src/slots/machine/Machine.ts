@@ -58,9 +58,9 @@ export class Machine implements IMachine {
         this._reelSpinSystem.startSpin();
     }
 
-    public stop(): Promise<void> {
+    public stop(): Promise<number[]> {
         // TODO: impl later
-        return Promise.resolve();
+        return this._reelSpinSystem.stopSpin();
     }
 
     public getView(): Container {
