@@ -16,6 +16,8 @@ export class Machine implements IMachine {
 
     private _reels: Reel[] = []
 
+    private _mask!: Graphics;
+
     constructor(eventBus: EventBus, spinSystem: IReelSpinSystem, symbolService: SymbolService) {
         this.container = new Container();
 
@@ -45,17 +47,16 @@ export class Machine implements IMachine {
         mask.beginFill(0xFFFFFF);
         mask.drawRect(0, 0, this.width, this.height);
         mask.endFill();
+        this._mask = mask;
         this.container.addChild(mask);
         this.container.mask = mask;
     }
 
     public spin(): void {
-        // TODO: impl later
         this._reelSpinSystem.startSpin();
     }
 
     public stop(): Promise<number[]> {
-        // TODO: impl later
         return this._reelSpinSystem.stopSpin();
     }
 
@@ -64,8 +65,7 @@ export class Machine implements IMachine {
     }
 
     public getMask(): Graphics {
-        // TODO: impl later
-        return new Graphics();
+        return this._mask;
     }
 
     public getSpinSystem(): IReelSpinSystem {

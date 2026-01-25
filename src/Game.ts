@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js';
-import { SlotMachine } from './slots/SlotMachine';
 import { AssetLoader } from './utils/AssetLoader';
 import { UI } from './ui/UI';
 import { GameState } from './state/GameState';
@@ -13,7 +12,6 @@ import { GameConfig } from './config/gameConfig/GameConfig';
 export class Game {
     private _app: PIXI.Application;
     private _stageManager!: StageManager;
-    private _slotMachine!: SlotMachine;
     private _ui!: UI;
     private _assetLoader: AssetLoader;
     private _eventBus: EventBus;
@@ -46,7 +44,8 @@ export class Game {
         this.resize = this.resize.bind(this);
 
         window.addEventListener('resize', this.resize);
-        (globalThis as any).__PIXI_APP__ = this._app;
+        // Toggle for PIXI web tools
+        // (globalThis as any).__PIXI_APP__ = this._app;
         this.resize();
     }
 
@@ -62,17 +61,9 @@ export class Game {
             this._ui = new UI(this._app, this._eventBus, this._gameState);
             this._app.stage.addChild(this._ui.container);
 
-            this._app.ticker.add(this.update.bind(this));
-
             console.log('Game initialized successfully');
         } catch (error) {
             console.error('Error initializing game:', error);
-        }
-    }
-
-    private update(delta: number): void {
-        if (this._slotMachine) {
-            this._slotMachine.update(delta);
         }
     }
 

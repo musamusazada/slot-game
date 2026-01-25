@@ -5,6 +5,7 @@ import { EventBus } from '../utils/EventBus';
 import { GameConfig } from '../config/gameConfig/GameConfig';
 import { GameEvents } from '../types/GameEvents';
 import { TGameStateData } from '../state/IGameState';
+import { TextureNames } from '../config/assetNames/TextureNames';
 
 export class UI {
     public container: PIXI.Container;
@@ -26,7 +27,7 @@ export class UI {
 
     private createSpinButton(): void {
         try {
-            this._spinButton = new PIXI.Sprite(AssetLoader.getTexture('button_spin.png'));
+            this._spinButton = new PIXI.Sprite(AssetLoader.getTexture(TextureNames.BUTTON_SPIN));
 
             this._spinButton.anchor.set(0.5);
             this._spinButton.x = GameConfig.SCREEN.width / 2;
@@ -55,12 +56,10 @@ export class UI {
     // Game events
     private onStateChange(payload: TGameStateData): void {
         if (payload.isSpinning) {
-            // TODO: refactor after assetLoader changes, no hard coded strings for access
-            this._spinButton.texture = AssetLoader.getTexture('button_spinning.png');
+            this._spinButton.texture = AssetLoader.getTexture(TextureNames.BUTTON_SPIN_DISABLED);
             this._spinButton.interactive = false;
         } else {
-            // TODO: same as above
-            this._spinButton.texture = AssetLoader.getTexture('button_spin.png');
+            this._spinButton.texture = AssetLoader.getTexture(TextureNames.BUTTON_SPIN);
             this._spinButton.interactive = true;
         }
     }

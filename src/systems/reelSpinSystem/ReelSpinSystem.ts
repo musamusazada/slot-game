@@ -69,8 +69,7 @@ export class ReelSpinSystem implements IReelSpinSystem {
 
     private stopReel(reel: IReel): Promise<void> {
         return new Promise((resolve) => {
-            // TODO: move out from here, no need to calculate each time.
-            const distance = reel.sizeOfSymbol * reel.symbolsCount;
+            const { distance } = this.getSpinProperties(reel);
             
             // Calculate target position to snap to grid
             const targetPos = Math.floor((reel.position - distance) / reel.sizeOfSymbol) * reel.sizeOfSymbol;

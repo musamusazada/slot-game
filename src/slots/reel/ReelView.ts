@@ -6,6 +6,8 @@ export class ReelView implements IReelView {
     private readonly _container: Container;
     private _symbolSprites: Sprite[] = [];
     private _symbolIds: number[] = [];
+    // Extra symbol needed for spinning - to handle swaps of symbols out of visible area.
+    private readonly _bufferSymbolCount: number = 1;
     private _totalWidth: number;
     private _visibleWidth: number;
 
@@ -21,8 +23,8 @@ export class ReelView implements IReelView {
     }   
 
     private initSymbols(): void {
-        // TODO: clean up for + 1
-        for (let i = 0; i < this.symbolCount + 1; i++) {
+        const totalSymbols = this.symbolCount + this._bufferSymbolCount;
+        for (let i = 0; i < totalSymbols; i++) {
             const id = this._symbolIds[i];
             const texture = this._symbolService.getSymbolTextureById(id);
             const sprite = new Sprite(texture);

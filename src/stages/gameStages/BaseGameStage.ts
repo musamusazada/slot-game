@@ -11,6 +11,8 @@ import { SOUND_NAMES } from "../../config/audioConfig/IAudioConfig";
 import { ReelSpinSystem } from "../../systems/reelSpinSystem/ReelSpinSystem";
 import { Machine } from "../../slots/machine/Machine";
 import { IMachine } from "../../slots/machine/IMachine";
+import { SpineNames } from "../../config/assetNames/SpineNames";
+import { AnimNames } from "../../config/assetNames/AnimNames";
 
 
 export class BaseGameStage implements IGameStage {
@@ -68,21 +70,18 @@ export class BaseGameStage implements IGameStage {
     }
 
     private setupFrameSpine(): void {
-        // TODO: no string access pls
-        const frameSpineData = AssetLoader.getSpine('base-feature-frame.json')
+        const frameSpineData = AssetLoader.getSpine(SpineNames.BASE_FEATURE_FRAME)
         if (frameSpineData) {
             this._frameSpine = new Spine(frameSpineData.spineData);
             this._frameSpine.position.set(GameConfig.SCREEN.width / 2, GameConfig.SCREEN.height / 2);
-            if (this._frameSpine.state.hasAnimation('idle')){
-                this._frameSpine.state.setAnimation(0, 'idle', true);
-            }
+            this._frameSpine.state.setAnimation(0, AnimNames.BG_IDLE, true);
             this.container.addChild(this._frameSpine);
             
         }
     }
 
     private setupWinAnimation(): void {
-        const winSpineData = AssetLoader.getSpine('big-boom-h.json');
+        const winSpineData = AssetLoader.getSpine(SpineNames.BIG_BOOM_H);
         if (winSpineData) {
             this._winSpine = new Spine(winSpineData.spineData);
             this._winSpine.x = GameConfig.SCREEN.width / 2;
@@ -110,7 +109,7 @@ export class BaseGameStage implements IGameStage {
     private onWin(result: WinCheckPayload): void {
         if (result.isWin && this._winSpine) {
             this._winSpine.visible = true;
-            this._winSpine.state.setAnimation(0, 'start', false);
+            this._winSpine.state.setAnimation(0, AnimNames.WIN, false);
         }
     }
 

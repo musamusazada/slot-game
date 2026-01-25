@@ -1,5 +1,11 @@
 import * as PIXI from 'pixi.js';
+import { ISkeletonData } from '@pixi-spine/base';
 import { SymbolConfig } from '../config/symbols/SymbolsConfig';
+import { TextureNames } from '../config/assetNames/TextureNames';
+
+interface SpineAsset {
+    spineData: ISkeletonData;
+}
 
 // Asset paths
 const IMAGES_PATH = 'assets/images/';
@@ -7,8 +13,8 @@ const SPINES_PATH = 'assets/spines/';
 
 // Asset lists
 const UI_IMAGES = [
-    'button_spin.png',
-    'button_spin_disabled.png',
+    TextureNames.BUTTON_SPIN,
+    TextureNames.BUTTON_SPIN_DISABLED,
 ];
 
 const IMAGES = [
@@ -22,7 +28,7 @@ const SPINES = [
 ];
 
 const textureCache: Record<string, PIXI.Texture> = {};
-const spineCache: Record<string, any> = {};
+const spineCache: Record<string, SpineAsset> = {};
 
 export class AssetLoader {
     constructor() {
@@ -53,7 +59,7 @@ export class AssetLoader {
                 console.log('Spine animations loaded successfully');
 
                 for (const [key, spine] of Object.entries(spineAssets)) {
-                    spineCache[key] = spine;
+                    spineCache[key] = spine as SpineAsset;
                 }
             } catch (error) {
                 console.error('Error loading spine animations:', error);
@@ -70,7 +76,7 @@ export class AssetLoader {
         return textureCache[name];
     }
 
-    public static getSpine(name: string): any {
+    public static getSpine(name: string): SpineAsset | undefined {
         return spineCache[name];
     }
 }

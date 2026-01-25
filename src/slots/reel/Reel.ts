@@ -10,6 +10,8 @@ export class Reel implements IReel {
     private _position: number = 0;
     private readonly _symbolsCount: number;
     private readonly _symbolSize: number;
+    // Extra symbol needed for spinning - to handle swaps of symbols out of visible area.
+    private readonly _bufferSymbolCount: number = 1;
     private _symbolIds: number[] = [];
     private readonly _view: IReelView;
 
@@ -28,8 +30,8 @@ export class Reel implements IReel {
     }
 
     private initData(): void {
-        // TODO: clean up for + 1
-        for (let i = 0; i < this._symbolsCount + 1; i++) {
+        const totalSymbols = this._symbolsCount + this._bufferSymbolCount;
+        for (let i = 0; i < totalSymbols; i++) {
             const symbol = this._symbolService.getRandomSymbolId();
             this._symbolIds.push(symbol);
         }

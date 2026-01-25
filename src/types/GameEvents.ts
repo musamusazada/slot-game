@@ -1,6 +1,5 @@
 import { TGameStateData } from "../state/IGameState";
 
-// TODO: should be sufficient for covering the template, check at the end.
 export enum GameEvents {
     SPIN_REQUEST = 'SPIN_REQUEST',
     SPIN_START = 'SPIN_START',
