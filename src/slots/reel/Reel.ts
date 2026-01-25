@@ -6,6 +6,8 @@ import { SymbolService } from "../../services/symbolService/SymbolService";
 
 export class Reel implements IReel {
     private readonly _container: Container;
+    // Initial Reel position.
+    private _position: number = 0;
     private readonly _symbolsCount: number;
     private readonly _symbolSize: number;
     private _symbolIds: number[] = [];
@@ -22,7 +24,7 @@ export class Reel implements IReel {
 
         this._view = new ReelView(this._symbolsCount, this._symbolSize, this._symbolService, this._symbolIds);
         this._container = this._view.getView();
-
+        this._view.update(this._position);
     }
 
     private initData(): void {
@@ -30,6 +32,15 @@ export class Reel implements IReel {
             const symbol = this._symbolService.getRandomSymbolId();
             this._symbolIds.push(symbol);
         }
+    }
+
+    public get position(): number {
+        return this._position;
+    }
+
+    public set position(value: number) {
+        this._position = value;
+        this._view.update(this._position);
     }
 
     public get symbolsCount(): number {

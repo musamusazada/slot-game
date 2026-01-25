@@ -30,6 +30,15 @@ export class ReelView implements IReelView {
         }
     }
 
+    public update(position: number): void {
+        for (let i = 0; i < this._symbolSprites.length; i++){
+            const sprite = this._symbolSprites[i];
+            const offset = i * this.symbolSize;
+            const calculatedPositionX = position + offset;
+            sprite.x = calculatedPositionX;
+        }
+    }
+
     public getView(): Container {
         return this._container;
     }
