@@ -20,5 +20,9 @@ export type GameEventMap = {
     [GameEvents.REEL_STOP]: { reelIndex: number };
     [GameEvents.ALL_REELS_STOPPED]: number[];
     [GameEvents.STATE_CHANGED]: TGameStateData;
-    [GameEvents.WIN_CHECK_COMPLETE]: { isWin: boolean};
+    [GameEvents.WIN_CHECK_COMPLETE]: WinCheckPayload;
 };
+
+export interface WinCheckPayload {
+    isWin: boolean;
+}

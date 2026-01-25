@@ -1,5 +1,5 @@
 import { IGameState } from "../../state/IGameState";
-import { GameEvents } from "../../types/GameEvents";
+import { GameEvents, WinCheckPayload } from "../../types/GameEvents";
 import { EventBus } from "../../utils/EventBus";
 import { IWinSystem } from "./IWinSystem";
 
@@ -13,6 +13,6 @@ export class WinSystem implements IWinSystem{
         const isWin = Math.random() < 0.5;
 
         this._gameState.setIsWin(isWin);
-        this._eventBus.emit(GameEvents.WIN_CHECK_COMPLETE, { isWin})
+        this._eventBus.emit(GameEvents.WIN_CHECK_COMPLETE, { isWin } as WinCheckPayload)
     }
 }

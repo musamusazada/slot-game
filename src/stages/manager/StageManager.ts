@@ -7,11 +7,14 @@ import { IGameStage } from "../../types/IGameStage";
 import { GameEvents } from "../../types/GameEvents";
 import { IStageManager } from "./IStageManager";
 import { BaseGameStage } from "../gameStages/BaseGameStage";
+import { WinSystem } from "../../systems/win/WinSystem";
 
 export class StageManager implements IStageManager {
     public container: Container;
 
     private _currStage: IGameStage | null = null;
+
+    private _winSystem: WinSystem;
 
     constructor(
         private _eventBus: EventBus,
@@ -21,10 +24,12 @@ export class StageManager implements IStageManager {
     ) {
         this.container = new Container();
 
+        this._winSystem = new WinSystem(this._eventBus, this._gameState);
+
         this._eventBus.on(GameEvents.SPIN_REQUEST, this.onSpinRequest.bind(this));
         this._eventBus.on(GameEvents.ALL_REELS_STOPPED, this.onReelsStopped.bind(this));
+        this._eventBus.on(GameEvents.WIN_CHECK_COMPLETE, this.onWinCheckComplete.bind(this));
 
-        // TODO: load stage ? 
         this.loadStage(new BaseGameStage(this._eventBus, this._audioService, this._symbolService));
     }
 
@@ -49,8 +54,11 @@ export class StageManager implements IStageManager {
     }
 
     private onReelsStopped(): void {
+        this._winSystem.checkWin();
+    }
+
+    private onWinCheckComplete(): void {
         this._gameState.setSpinning(false);
-        // TODO: win system ?
     }
 
     public getCurrentStage(): IGameStage | null {

@@ -3,7 +3,7 @@ import { EventBus } from "../../utils/EventBus";
 import { AudioService } from "../../services/audioService/AudioService";
 import { SymbolService } from "../../services/symbolService/SymbolService";
 import { IGameStage } from "../../types/IGameStage";
-import { GameEvents } from "../../types/GameEvents";
+import { GameEvents, WinCheckPayload } from "../../types/GameEvents";
 import { GameConfig } from "../../config/gameConfig/GameConfig";
 import { AssetLoader } from "../../utils/AssetLoader";
 import { Spine } from "pixi-spine";
@@ -18,6 +18,7 @@ export class BaseGameStage implements IGameStage {
 
     private _machine: Machine;
     private _frameSpine: Spine | null = null;
+    private _winSpine: Spine | null = null;
 
     constructor(
         private _eventBus: EventBus,
@@ -32,10 +33,12 @@ export class BaseGameStage implements IGameStage {
 
         this.createBackground();
         this.setupFrameSpine();
+        this.setupWinAnimation();
         this.setupMachineView();
 
         this._eventBus.on(GameEvents.SPIN_START, this.onSpinStart.bind(this));
         this._eventBus.on(GameEvents.ALL_REELS_STOPPED, this.onAllReelsStopped.bind(this));
+        this._eventBus.on(GameEvents.WIN_CHECK_COMPLETE, this.onWin.bind(this));
     }
 
     public getView(): Container {
@@ -50,6 +53,7 @@ export class BaseGameStage implements IGameStage {
     public onExit(): void{
         this._eventBus.off(GameEvents.SPIN_START, this.onSpinStart.bind(this));
         this._eventBus.off(GameEvents.ALL_REELS_STOPPED, this.onAllReelsStopped.bind(this));
+        this._eventBus.off(GameEvents.WIN_CHECK_COMPLETE, this.onWin.bind(this));
 
         this._audioService.dispose();
         this.container.destroy({ children: true });
@@ -79,6 +83,17 @@ export class BaseGameStage implements IGameStage {
         }
     }
 
+    private setupWinAnimation(): void {
+        const winSpineData = AssetLoader.getSpine('big-boom-h.json');
+        if (winSpineData) {
+            this._winSpine = new Spine(winSpineData.spineData);
+            this._winSpine.x = GameConfig.SCREEN.width / 2;
+            this._winSpine.y = GameConfig.SCREEN.height / 2;
+            this._winSpine.visible = false;
+            this.container.addChild(this._winSpine);
+        }
+    }
+
     private setupMachineView(): void {
         const machineView = this._machine.getView();
         machineView.position.x = ( GameConfig.SCREEN.width - this._machine.width ) / 2;
@@ -92,6 +107,13 @@ export class BaseGameStage implements IGameStage {
 
     private onAllReelsStopped(): void {
         this._audioService.stop(SOUND_NAMES.REEL_SPIN)
+    }
+
+    private onWin(result: WinCheckPayload): void {
+        if (result.isWin && this._winSpine) {
+            this._winSpine.visible = true;
+            this._winSpine.state.setAnimation(0, 'start', false);
+        }
     }
 
     public getMachine(): IMachine | null {
