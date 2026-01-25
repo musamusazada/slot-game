@@ -16,12 +16,10 @@ export class ReelSpinSystem implements IReelSpinSystem {
         this._spinConfig = GameConfig.SPIN;
     }
     public init(reels: IReel[]): void {
-        // TODO: impl later
         this._reels = reels;
     }
 
     public startSpin(): void {
-        // TODO: impl later
         this._spinStartTime = Date.now();
         this._reels.forEach((reel, index) => {
             gsap.delayedCall(index * this._spinConfig.staggerStartDelay , () => this.spinReel(reel));

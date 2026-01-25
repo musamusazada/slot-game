@@ -18,14 +18,12 @@ export const GameConfig: IGameConfig = {
     SYMBOLS: {
         size: 150,
     },
-    // TODO: add descriptive comments when implementing spinning
     SPIN: {
         minimumSpinTime: 2,
         spinningSpeed: 1,
         stopDuration: 2,
         staggerStartDelay: 0.2,
         staggerStopDelay: 0.2,
-        //TODO: adjust the values when implementing spinning
         spinEase: 'none',
         stopEase: 'back.out(1)',
     },

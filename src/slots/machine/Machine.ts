@@ -22,13 +22,9 @@ export class Machine implements IMachine {
         this._reelSpinSystem = spinSystem;
         this._symbolService = symbolService;
 
-        // TODO: create reels
         this.createReels();
-
-        // TODO: create Mask
         this.createMask();
 
-        // TODO: init spin system
         this._reelSpinSystem.init(this._reels);
 
         eventBus.on(GameEvents.SPIN_START, this.spin.bind(this));

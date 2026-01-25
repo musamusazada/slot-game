@@ -12,16 +12,19 @@ export enum GameEvents {
 }
 
 // Typed map for events, void for no-payload events
-// TODO: type payloads
 export type GameEventMap = {
     [GameEvents.SPIN_REQUEST]: void;
     [GameEvents.SPIN_START]: void;
-    [GameEvents.REEL_SPIN_START]: { reelIndex: number };
-    [GameEvents.REEL_STOP]: { reelIndex: number };
+    [GameEvents.REEL_SPIN_START]: IReelStatePayload;
+    [GameEvents.REEL_STOP]: IReelStatePayload;
     [GameEvents.ALL_REELS_STOPPED]: number[];
     [GameEvents.STATE_CHANGED]: TGameStateData;
     [GameEvents.WIN_CHECK_COMPLETE]: WinCheckPayload;
 };
+
+export interface IReelStatePayload {
+    reelIndex: number;
+}
 
 export interface WinCheckPayload {
     isWin: boolean;

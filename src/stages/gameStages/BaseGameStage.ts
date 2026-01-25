@@ -27,7 +27,6 @@ export class BaseGameStage implements IGameStage {
     ){
         this.container = new Container();
 
-        // TODO: machine setup stuff
         const reelSpinSystem = new ReelSpinSystem(this._eventBus);
         this._machine = new Machine(this._eventBus, reelSpinSystem, this._symbolService);
 
@@ -47,7 +46,7 @@ export class BaseGameStage implements IGameStage {
 
     // Stage states
     public onEnter(): void {
-        // TODO: setup ?
+        // Skipping as I dont have any other stages or something to put here ?
     }
 
     public onExit(): void{
@@ -59,7 +58,6 @@ export class BaseGameStage implements IGameStage {
         this.container.destroy({ children: true });
     }
 
-    // TODO: for now it is fine but if have time, separate the visuals ?
     // Visual setups
     private createBackground(): void{
         const bg = new Graphics();

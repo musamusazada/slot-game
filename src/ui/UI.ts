@@ -1,7 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { SlotMachine } from '../slots/SlotMachine';
 import { AssetLoader } from '../utils/AssetLoader';
-import { sound } from '../utils/sound';
 import { GameState } from '../state/GameState';
 import { EventBus } from '../utils/EventBus';
 import { GameConfig } from '../config/gameConfig/GameConfig';
@@ -50,8 +48,6 @@ export class UI {
 
     private onSpinButtonClick(): void {
         if(this._gameState.isSpinning) return;
-
-        sound.play('Spin button');
 
         this._eventBus.emit(GameEvents.SPIN_REQUEST);
     }

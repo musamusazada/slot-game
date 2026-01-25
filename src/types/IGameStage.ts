@@ -5,9 +5,9 @@ import { IMachine } from "../slots/machine/IMachine";
  * Definition of a game stage
  */
 export interface IGameStage {
-    //TODO: expose curr stage view ?
     getView(): Container;
 
+    // Expose existing machine to consumers
     getMachine(): IMachine | null;
 
     // Any logic for setups while entering stage.

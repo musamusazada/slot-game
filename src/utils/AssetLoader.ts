@@ -1,11 +1,9 @@
 import * as PIXI from 'pixi.js';
-import { sound } from './sound';
 import { SymbolConfig } from '../config/symbols/SymbolsConfig';
 
 // Asset paths
 const IMAGES_PATH = 'assets/images/';
 const SPINES_PATH = 'assets/spines/';
-const SOUNDS_PATH = 'assets/sounds/';
 
 // Asset lists
 const UI_IMAGES = [
@@ -21,13 +19,6 @@ const IMAGES = [
 const SPINES = [
     'big-boom-h.json',
     'base-feature-frame.json'
-];
-
-
-const SOUNDS = [
-    'Reel spin.webm',
-    'win.webm',
-    'Spin button.webm',
 ];
 
 const textureCache: Record<string, PIXI.Texture> = {};
@@ -68,21 +59,9 @@ export class AssetLoader {
                 console.error('Error loading spine animations:', error);
             }
 
-            await this.loadSounds();
             console.log('Assets loaded successfully');
         } catch (error) {
             console.error('Error loading assets:', error);
-            throw error;
-        }
-    }
-
-    private async loadSounds(): Promise<void> {
-        try {
-            SOUNDS.forEach(soundFile => {
-                sound.add(soundFile.split('.')[0], SOUNDS_PATH + soundFile);
-            });
-        } catch (error) {
-            console.error('Error loading sounds:', error);
             throw error;
         }
     }
