@@ -8,6 +8,7 @@ import { GameEvents } from "../../types/GameEvents";
 import { IStageManager } from "./IStageManager";
 import { BaseGameStage } from "../gameStages/BaseGameStage";
 import { WinSystem } from "../../systems/win/WinSystem";
+import { SOUND_NAMES } from "../../config/audioConfig/IAudioConfig";
 
 export class StageManager implements IStageManager {
     public container: Container;
@@ -55,10 +56,11 @@ export class StageManager implements IStageManager {
 
     private onReelsStopped(): void {
         this._winSystem.checkWin();
+        this._gameState.setSpinning(false);
     }
 
     private onWinCheckComplete(): void {
-        this._gameState.setSpinning(false);
+        this._audioService.play(SOUND_NAMES.WIN);
     }
 
     public getCurrentStage(): IGameStage | null {
