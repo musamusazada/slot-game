@@ -50,4 +50,6 @@ AssetLoader - Would have been better with pooling, proper management of assets e
 
 I think this assignment turned more into cleaning up template and structurizing it rather than planning and implementing a nice architecture for a slot game.
 
+-- I think win.webm is either broken or it is just no with no sound ?
+
 I hope you will easily navigate around the repository.
