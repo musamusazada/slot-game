@@ -7,6 +7,11 @@ import { GameConfig } from "../../config/gameConfig/GameConfig";
 import { Reel } from "../reel/Reel";
 import { GameEvents } from "../../types/GameEvents";
 
+
+/**
+ * Simple Slot machine
+ * Setus up Reels via SpinSystem.
+ */
 export class Machine implements IMachine {
     public readonly container: Container;
 

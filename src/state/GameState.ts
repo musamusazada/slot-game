@@ -2,6 +2,9 @@ import { GameEvents } from "../types/GameEvents";
 import { EventBus } from "../utils/EventBus";
 import { IGameState, TGameStateData } from "./IGameState";
 
+/**
+ * Single object global game state
+ */
 export class GameState implements IGameState {
     private _isSpinning: boolean = false;
     private _isWin: boolean = false;

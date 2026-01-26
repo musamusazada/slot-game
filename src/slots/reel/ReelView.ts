@@ -2,6 +2,9 @@ import { Container, Sprite } from "pixi.js";
 import { IReelView } from "./types/IReelView";
 import { SymbolService } from "../../services/symbolService/SymbolService";
 
+/**
+ * ReelView - visual component to handle reel symbols
+ */
 export class ReelView implements IReelView {
     private readonly _container: Container;
     private _symbolSprites: Sprite[] = [];

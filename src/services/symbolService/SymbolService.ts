@@ -4,6 +4,10 @@ import { ISymbolConfig } from "../../config/symbols/ISymbolConfig";
 import { SymbolConfig } from "../../config/symbols/SymbolsConfig";
 import { Texture } from "@pixi/core";
 
+
+/**
+ * SymbolService class to provide symbol util methods
+ */
 export class SymbolService implements ISymbolService {
     private _symbolsMap: Map<number, ISymbolConfig> = new Map();
 

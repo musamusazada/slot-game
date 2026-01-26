@@ -4,6 +4,11 @@ import { ReelView } from "./ReelView";
 import { IReelView } from "./types/IReelView";
 import { SymbolService } from "../../services/symbolService/SymbolService";
 
+
+/**
+ * Reel logic class
+ * Used in conbination with ReelView to handle visuals.
+ */
 export class Reel implements IReel {
     private readonly _container: Container;
     // Initial Reel position.

@@ -7,6 +7,11 @@ import { GSAPUtils } from "../../utils/GSAPUtils";
 import { GameEvents } from "../../types/GameEvents";
 import { EventBus } from "../../utils/EventBus";
 
+
+/**
+ * SpinSystem class
+ * Built on top of gsap to provide spinning support for Machine
+ */
 export class ReelSpinSystem implements IReelSpinSystem {
     private _reels: IReel[] = [];
     private _spinConfig: TSpinConfig;

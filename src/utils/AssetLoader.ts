@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import { ISkeletonData } from '@pixi-spine/base';
 import { SymbolConfig } from '../config/symbols/SymbolsConfig';
 import { TextureNames } from '../config/assetNames/TextureNames';
+import { SpineNames } from '../config/assetNames/SpineNames';
 
 interface SpineAsset {
     spineData: ISkeletonData;
@@ -23,8 +24,8 @@ const IMAGES = [
 ];
 
 const SPINES = [
-    'big-boom-h.json',
-    'base-feature-frame.json'
+    SpineNames.BIG_BOOM_H,
+    SpineNames.BASE_FEATURE_FRAME
 ];
 
 const textureCache: Record<string, PIXI.Texture> = {};
