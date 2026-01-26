@@ -24,6 +24,7 @@ export class ReelSpinSystem implements IReelSpinSystem {
         this._reels = reels;
     }
 
+    // Start spinning all reels
     public startSpin(): void {
         this._spinStartTime = Date.now();
         this._reels.forEach((reel, index) => {
@@ -31,6 +32,7 @@ export class ReelSpinSystem implements IReelSpinSystem {
         })
     }
 
+    // Starts stopping all reels
     public async stopSpin(): Promise<number[]> {
        const remainingMinTime = this.getRemainingMinSpinTime();
         
@@ -59,6 +61,7 @@ export class ReelSpinSystem implements IReelSpinSystem {
         return results; 
     }
 
+    // Start spinning a reel infinitely in one rotation at a time
     private spinReel(reel: IReel): void {
         gsap.killTweensOf(reel);
 
@@ -72,6 +75,7 @@ export class ReelSpinSystem implements IReelSpinSystem {
         })
     }
 
+    // Stops reel to its final position on grid
     private stopReel(reel: IReel): Promise<void> {
         return new Promise((resolve) => {
             const { distance } = this.getSpinProperties(reel);
@@ -92,6 +96,7 @@ export class ReelSpinSystem implements IReelSpinSystem {
         });
     }
 
+    // Calculates spin distance and duration for one rotation - one spin
     private getSpinProperties(reel: IReel): TSpinProperties {
         const pixelsPerSecond = GameConfig.REELS.symbolsPerSecond * reel.sizeOfSymbol;
         const oneRotationDistance = reel.sizeOfSymbol * reel.symbolsCount;
@@ -102,6 +107,7 @@ export class ReelSpinSystem implements IReelSpinSystem {
         }
     }
 
+    // Utility method for minimum spinning time
     private getRemainingMinSpinTime(): number {
         const elapsed = Date.now() - this._spinStartTime;
         return Math.max(0, this._spinConfig.minimumSpinTime - elapsed);
